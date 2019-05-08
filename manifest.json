@@ -9,7 +9,7 @@
   },
 
   "permissions": [
-    "*://youtube/*","*://youtube.com/*",
+    "*://youtube/*","*://www.youtube.com/*",
     "storage",
     "contextMenus",
     "tabs"
@@ -21,7 +21,7 @@
     },
 
   "content_scripts": [ {
-      "matches":["<all_urls>"],
+      "matches":["*://www.youtube.com/watch?*"],
       "js":["inject.js"]
     }
   ]
