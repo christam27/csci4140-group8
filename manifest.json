@@ -1,0 +1,28 @@
+{
+  "manifest_version": 2,
+  "name": "Improve Youtube",
+  "version": "1.0",
+
+  "browser_action": {
+    "default_title": "The home page",
+    "default_popup": "popup.html"
+  },
+
+  "permissions": [
+    "*://youtube/*","*://youtube.com/*",
+    "storage",
+    "contextMenus",
+    "tabs"
+  ],
+
+  "background": {
+      "scripts": ["background.js"],
+      "presistent": false
+    },
+
+  "content_scripts": [ {
+      "matches":["<all_urls>"],
+      "js":["inject.js"]
+    }
+  ]
+}
