@@ -24,5 +24,6 @@
       "matches":["*://www.youtube.com/watch?*"],
       "js":["inject.js"]
     }
-  ]
+  ],
+  "content_security_policy": "script-src 'self' https://www.youtube.com/iframe_api https://s.ytimg.com https://googleads.g.doubleclick.net https://static.doubleclick.net https://www.youtube.com; object-src 'self'"
 }
