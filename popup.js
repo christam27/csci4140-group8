@@ -122,8 +122,21 @@ function clickpage(e){
         alink.innerHTML = videolist[i][2];
         divbody.appendChild(alink);
 
+        var videoid = videolist[i][2].slice(32);
+        console.log(videoid);
+
+        var playeriframe = document.createElement("iframe");
+        playersrc = "https://www.youtube.com/embed/" + videoid;
+        playeriframe.src = playersrc;
+        playeriframe.width = "320";
+        playeriframe.height = "180";
+        playeriframe.frameborder = "0";
+        playeriframe.allowfullscreen = "allowfullscreen";
+        divbody.appendChild(playeriframe);
+
         div.appendChild(divbody)
         show.appendChild(div);
+
       }
 
       var addlink = document.getElementsByTagName("a");
@@ -138,6 +151,7 @@ function clickpage(e){
         console.log(e);
         addlink[i].addEventListener('click',clicklink.bind(this,e));
       }
+
       break;
     case 2:
       // group
@@ -192,6 +206,18 @@ function clickpage(e){
             alink.setAttributeNode(att4);
             alink.innerHTML = grouplist[i][2];
             divbody.appendChild(alink);
+
+            var videoid = grouplist[i][2].slice(32);
+            console.log(videoid);
+
+            var playeriframe = document.createElement("iframe");
+            playersrc = "https://www.youtube.com/embed/" + videoid;
+            playeriframe.src = playersrc;
+            playeriframe.width = "320";
+            playeriframe.height = "180";
+            playeriframe.frameborder = "0";
+            playeriframe.allowfullscreen = "allowfullscreen";
+            divbody.appendChild(playeriframe);
 
             div.appendChild(divbody)
             show.appendChild(div);
@@ -267,6 +293,18 @@ function clickpage(e){
             alink.setAttributeNode(att4);
             alink.innerHTML = preferencelist[i][2];
             divbody.appendChild(alink);
+
+            var videoid = preferencelist[i][2].slice(32);
+            console.log(videoid);
+
+            var playeriframe = document.createElement("iframe");
+            playersrc = "https://www.youtube.com/embed/" + videoid;
+            playeriframe.src = playersrc;
+            playeriframe.width = "320";
+            playeriframe.height = "180";
+            playeriframe.frameborder = "0";
+            playeriframe.allowfullscreen = "allowfullscreen";
+            divbody.appendChild(playeriframe);
 
             div.appendChild(divbody)
             show.appendChild(div);
