@@ -327,7 +327,7 @@ function clickpage(e){
       break;
     case 4:
       var show = document.getElementById("showjs");
-      show.innerHTML = "<h4>unsibscribe recommend</h4>";
+      show.innerHTML = "<h4>unsubscribe recommend</h4>";
       var unsublist = [];
       var goodlist = [];
       var theday = new Date();
