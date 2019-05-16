@@ -379,6 +379,7 @@ function clickpage(e){
             divbody.appendChild(alink);
 
             div.appendChild(divbody)
+            div.style = "height: 150px;width: 550px;";
             show.appendChild(div);
             break;
           }
