@@ -144,139 +144,147 @@ function clickpage(e){
       var show = document.getElementById("showjs");
       show.innerHTML = "";
       var headtitle = document.createElement("h4");
-      headtitle.innerHTML = "Tech Channel:";
+      chrome.storage.sync.get(['groupname'], function(result) {
+        console.log('Value currently is ' + result.groupname);
+        headtitle.innerHTML = result.groupname + ":";
+      }); 
       show.appendChild(headtitle);
       var grouplist = [];
 
-      var groupmember = ["Linus Tech Tips","Austin Evans","Dave Lee","feverSound com","Jonathan Morrison","Lok Cheung HK","Marques Brownlee","Matthew Moniz","The Tech Chap"];
-      for(var i = 0; i < videolist.length; i++){
-        if(groupmember.includes(videolist[i][0])){
-          grouplist.push(videolist[i]);
-        }
-      }
-
-      for(var i = 0; i < 15; i++){
-        var div = document.createElement("div");
-        var att = document.createAttribute("class");
-        att.value = "card";
-        div.setAttributeNode(att);
-
-        var header = document.createElement("h5");
-        var att2 = document.createAttribute("class");
-        att2.value = "card-header";
-        header.setAttributeNode(att2);
-        header.innerHTML = grouplist[i][0];
-        div.appendChild(header);
-
-        var divbody = document.createElement("div");
-        var att3 = document.createAttribute("class");
-        att3.value = "card-body";
-        divbody.setAttributeNode(att3);
-
-        var header2 = document.createElement("h6");
-        var att3 = document.createAttribute("class");
-        att3.value = "card-title";
-        header2.setAttributeNode(att3);
-        header2.innerHTML = grouplist[i][1];
-        divbody.appendChild(header2);
-
-        var alink = document.createElement("a");
-        var att4 = document.createAttribute("href");
-        att4.value = grouplist[i][2];
-        alink.setAttributeNode(att4);
-        alink.innerHTML = grouplist[i][2];
-        divbody.appendChild(alink);
-
-        div.appendChild(divbody)
-        show.appendChild(div);
-      }
-
-      var addlink = document.getElementsByTagName("a");
-
-      function clicklink(e){
-        // console.log(e);
-        chrome.tabs.create({url: e})
-      }
-      // console.log(addlink);
-      for(var i = 0; i< addlink.length; i++){
-        var e = addlink[i].innerHTML;
-        console.log(e);
-        addlink[i].addEventListener('click',clicklink.bind(this,e));
-      }
-      break;
-    case 3:
-      // preference
-      var show = document.getElementById("showjs");
-      show.innerHTML = "";
-      var headtitle = document.createElement("h4");
-      chrome.storage.sync.get(['preference'], function(result) {
-        console.log('Value currently is ' + result.preference);
-        var preferencemember = result.preference;
-        headtitle.innerHTML = "Preference: " + preferencemember;
-        show.appendChild(headtitle);
-        var preferencelist = [];
-
-        for(var i = 0; i < 100; i++){
-          if(preferencemember === (videolist[i][0])){
-              preferencelist.push(videolist[i]);
+      chrome.storage.sync.get(['list'], function(result) {
+        console.log('groupmem Value currently is ' + result.list);
+        var groupmember = result.list;
+        for(var i = 0; i < videolist.length; i++){
+          if(groupmember.includes(videolist[i][0])){
+            grouplist.push(videolist[i]);
           }
         }
 
-        for(var i = 0; i < 15; i++){
-          if(!preferencelist.includes(videolist[i])){
-            preferencelist.push(videolist[i]);
+        if(groupmember.length > 0){
+          for(var i = 0; i < 15; i++){
+            var div = document.createElement("div");
+            var att = document.createAttribute("class");
+            att.value = "card";
+            div.setAttributeNode(att);
+
+            var header = document.createElement("h5");
+            var att2 = document.createAttribute("class");
+            att2.value = "card-header";
+            header.setAttributeNode(att2);
+            header.innerHTML = grouplist[i][0];
+            div.appendChild(header);
+
+            var divbody = document.createElement("div");
+            var att3 = document.createAttribute("class");
+            att3.value = "card-body";
+            divbody.setAttributeNode(att3);
+
+            var header2 = document.createElement("h6");
+            var att3 = document.createAttribute("class");
+            att3.value = "card-title";
+            header2.setAttributeNode(att3);
+            header2.innerHTML = grouplist[i][1];
+            divbody.appendChild(header2);
+
+            var alink = document.createElement("a");
+            var att4 = document.createAttribute("href");
+            att4.value = grouplist[i][2];
+            alink.setAttributeNode(att4);
+            alink.innerHTML = grouplist[i][2];
+            divbody.appendChild(alink);
+
+            div.appendChild(divbody)
+            show.appendChild(div);
           }
-        }
+          var addlink = document.getElementsByTagName("a");
 
-        for(var i = 0; i < 15; i++){
-          var div = document.createElement("div");
-          var att = document.createAttribute("class");
-          att.value = "card";
-          div.setAttributeNode(att);
-
-          var header = document.createElement("h5");
-          var att2 = document.createAttribute("class");
-          att2.value = "card-header";
-          header.setAttributeNode(att2);
-          header.innerHTML = preferencelist[i][0];
-          div.appendChild(header);
-
-          var divbody = document.createElement("div");
-          var att3 = document.createAttribute("class");
-          att3.value = "card-body";
-          divbody.setAttributeNode(att3);
-
-          var header2 = document.createElement("h6");
-          var att3 = document.createAttribute("class");
-          att3.value = "card-title";
-          header2.setAttributeNode(att3);
-          header2.innerHTML = preferencelist[i][1];
-          divbody.appendChild(header2);
-
-          var alink = document.createElement("a");
-          var att4 = document.createAttribute("href");
-          att4.value = preferencelist[i][2];
-          alink.setAttributeNode(att4);
-          alink.innerHTML = preferencelist[i][2];
-          divbody.appendChild(alink);
-
-          div.appendChild(divbody)
-          show.appendChild(div);
-        }
-
-        var addlink = document.getElementsByTagName("a");
-
-        function clicklink(e){
-          // console.log(e);
-          chrome.tabs.create({url: e})
-        }
-        // console.log(addlink);
-        for(var i = 0; i< addlink.length; i++){
-          var e = addlink[i].innerHTML;
-          console.log(e);
-          addlink[i].addEventListener('click',clicklink.bind(this,e));
+          function clicklink(e){
+            // console.log(e);
+            chrome.tabs.create({url: e})
+          }
+          // console.log(addlink);
+          for(var i = 0; i< addlink.length; i++){
+            var e = addlink[i].innerHTML;
+            console.log(e);
+            addlink[i].addEventListener('click',clicklink.bind(this,e));
+          }
         }
       });
+
+        break;
+      case 3:
+        // preference
+        var show = document.getElementById("showjs");
+        show.innerHTML = "";
+        var headtitle = document.createElement("h4");
+        chrome.storage.sync.get(['preference'], function(result) {
+          console.log('Value currently is ' + result.preference);
+          var preferencemember = result.preference;
+          headtitle.innerHTML = "Preference: " + preferencemember;
+          show.appendChild(headtitle);
+          var preferencelist = [];
+
+          for(var i = 0; i < 100; i++){
+            if(preferencemember === (videolist[i][0])){
+                preferencelist.push(videolist[i]);
+            }
+          }
+
+          for(var i = 0; i < 15; i++){
+            if(!preferencelist.includes(videolist[i])){
+              preferencelist.push(videolist[i]);
+            }
+          }
+
+          for(var i = 0; i < 15; i++){
+            var div = document.createElement("div");
+            var att = document.createAttribute("class");
+            att.value = "card";
+            div.setAttributeNode(att);
+
+            var header = document.createElement("h5");
+            var att2 = document.createAttribute("class");
+            att2.value = "card-header";
+            header.setAttributeNode(att2);
+            header.innerHTML = preferencelist[i][0];
+            div.appendChild(header);
+
+            var divbody = document.createElement("div");
+            var att3 = document.createAttribute("class");
+            att3.value = "card-body";
+            divbody.setAttributeNode(att3);
+
+            var header2 = document.createElement("h6");
+            var att3 = document.createAttribute("class");
+            att3.value = "card-title";
+            header2.setAttributeNode(att3);
+            header2.innerHTML = preferencelist[i][1];
+            divbody.appendChild(header2);
+
+            var alink = document.createElement("a");
+            var att4 = document.createAttribute("href");
+            att4.value = preferencelist[i][2];
+            alink.setAttributeNode(att4);
+            alink.innerHTML = preferencelist[i][2];
+            divbody.appendChild(alink);
+
+            div.appendChild(divbody)
+            show.appendChild(div);
+          }
+
+          var addlink = document.getElementsByTagName("a");
+
+          function clicklink(e){
+            // console.log(e);
+            chrome.tabs.create({url: e})
+          }
+          // console.log(addlink);
+          for(var i = 0; i< addlink.length; i++){
+            var e = addlink[i].innerHTML;
+            console.log(e);
+            addlink[i].addEventListener('click',clicklink.bind(this,e));
+          }
+        });
 
       break;
     case 4:
@@ -355,7 +363,7 @@ function clickpage(e){
       break;
     case 5:
       var show = document.getElementById("showjs");
-      show.innerHTML = "<h4>Setting</h4>";
+      show.innerHTML = "<h4>Setting:</h4><br><h5>preference channel:</h5>";
 
       chrome.storage.sync.get(['preference'], function(result) {
           if(typeof result.preference === undefined){
@@ -365,7 +373,7 @@ function clickpage(e){
           }
           var preference_text = result.preference;
 
-          function update() {
+          function update_p() {
             preference = document.getElementById("preferencetext").value;
             if (!preference) {
               console.log('error');
@@ -388,12 +396,111 @@ function clickpage(e){
           var button = document.createElement("button");
           button.innerHTML = "Save";
           button.setAttribute("id", "savebutton");
-          button.addEventListener("click", update);
+          button.addEventListener("click", update_p);
           show.appendChild(button);
 
+          var br = document.createElement("br");
+          show.appendChild(br);
 
+          var grouptitle = document.createElement("h5");
+          grouptitle.innerHTML = "group name:";
+          show.appendChild(grouptitle);
+
+
+          chrome.storage.sync.get(['groupname'], function(result) {
+            if(typeof result.groupname === undefined){
+                chrome.storage.sync.set({'groupname': ""}, function() {
+                  console.log('groupname Value is set to ' + "null");
+                });
+            }
+            var groupname_text = result.groupname;
+            console.log('groupname Value currently is ' + result.groupname);
+            var input_2 = document.createElement("input");
+            input_2.setAttribute('type', 'text');
+            input_2.setAttribute('id', 'groupname');
+            input_2.setAttribute("value", groupname_text);
+            show.appendChild(input_2);
+
+            function update_g() {
+              var groupname = document.getElementById("groupname").value;
+              if (!groupname) {
+                console.log('error');
+                return;
+              }
+              chrome.storage.sync.set({'groupname': groupname}, function() {
+                console.log('groupname Value is set to ' + groupname);
+              });
+              chrome.storage.sync.get(['groupname'], function(result) {
+                console.log('groupname Value currently is ' + result.groupname);
+              });
+            }
+
+            var button_2 = document.createElement("button");
+            button_2.innerHTML = "Save";
+            button_2.setAttribute("id", "savebutton_2");
+            button_2.addEventListener("click", update_g);
+            show.appendChild(button_2);
+
+            var br2 = document.createElement("br");
+            show.appendChild(br2);
+            var addchanneltext = document.createElement("h5");
+            addchanneltext.innerHTML = "add new channel into group:"
+            show.appendChild(addchanneltext);
+            chrome.storage.sync.get(['list'], function(result) {
+              if(typeof result.list === 'undefined'){
+                  result.list = []
+                  chrome.storage.sync.set({'list':result.list}, function() {
+                    console.log('groupname Value is set to (null)' + result.list);
+                  });
+              }
+              console.log('groupmem Value currently is ' + result.list);
+
+              var groupmem = result.list;
+              console.log('groupmem Value currently is ' + result.list);
+              var input_3 = document.createElement("input");
+              input_3.setAttribute('type', 'text');
+              input_3.setAttribute('id', 'groupmem');
+              show.appendChild(input_3);
+
+              function update_m() {
+                var newmem = document.getElementById("groupmem").value;
+                if (!newmem) {
+                  console.log('error');
+                  return;
+                }else{
+                    result.list.push(newmem);
+                    chrome.storage.sync.set({'list':result.list}, function() {
+                      console.log('groupmem Value is set to ' + result.list);
+                    });
+                    chrome.storage.sync.get(['list'], function(result) {
+                      console.log('groupmem Value currently is ' + result.list);
+                    });
+                }
+              }
+
+              function update_r() {
+                result.list = []
+                chrome.storage.sync.set({'list':result.list}, function() {
+                  console.log('groupname Value is set to (null)' + result.list);
+                });
+              }
+
+              var button_3 = document.createElement("button");
+              button_3.innerHTML = "Add";
+              button_3.setAttribute("id", "savebutton_3");
+              button_3.addEventListener("click", update_m);
+              show.appendChild(button_3);
+
+              var button_4 = document.createElement("button");
+              button_4.innerHTML = "Reset group";
+              button_4.setAttribute("id", "savebutton_4");
+              button_4.addEventListener("click", update_r);
+              show.appendChild(button_4);
+
+            });
+
+          });
       });
-
       break;
   }
 }
