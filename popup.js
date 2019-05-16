@@ -514,6 +514,12 @@ function clickpage(e){
                       console.log('groupmem Value currently is ' + result.list);
                     });
                 }
+                var gmdiv = document.getElementById("groupmemdiv");
+                gmdiv.innerHTML = "group member: <br>";
+                for(var i = 0; i < result.list.length; i++){
+                  gmdiv.innerHTML += result.list[i] + "<br>";
+                }
+
               }
 
               function update_r() {
@@ -521,6 +527,11 @@ function clickpage(e){
                 chrome.storage.sync.set({'list':result.list}, function() {
                   console.log('groupname Value is set to (null)' + result.list);
                 });
+                var gmdiv = document.getElementById("groupmemdiv");
+                gmdiv.innerHTML = "group member: <br>";
+                for(var i = 0; i < result.list.length; i++){
+                  gmdiv.innerHTML += result.list[i] + "<br>";
+                }
               }
 
               var button_3 = document.createElement("button");
@@ -534,6 +545,16 @@ function clickpage(e){
               button_4.setAttribute("id", "savebutton_4");
               button_4.addEventListener("click", update_r);
               show.appendChild(button_4);
+
+              var br3 = document.createElement("br");
+              show.appendChild(br3);
+              var groupmemdiv = document.createElement("div");
+              groupmemdiv.id = "groupmemdiv";
+              groupmemdiv.innerHTML = "group member: <br>";
+              for(var i = 0; i < result.list.length; i++){
+                groupmemdiv.innerHTML += result.list[i] + "<br>";
+              }
+              show.appendChild(groupmemdiv);
 
             });
 
