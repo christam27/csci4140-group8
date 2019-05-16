@@ -4,7 +4,7 @@
 
 2. put the "subscription_manager.xml" in the same direct directory of the chrome extension.
 
-3. open the exnteiosn management page by chrome://extensions.
+3. open the exntension management page by chrome://extensions.
 
 4. enable developer mode for chrome extension.
 
