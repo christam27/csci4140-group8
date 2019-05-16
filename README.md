@@ -9,3 +9,6 @@
 4. enable developer mode for chrome extension.
 
 5. click load unpacked button and select the extension directory.
+
+how to run the chrome extension:
+https://www.youtube.com/watch?v=fb09WAODjPI
