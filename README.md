@@ -1,4 +1,4 @@
-# csci4140-group8
+# youtube subscriptions checking
 
 1. download the "subscription_manager.xml" at the bottom in this link https://www.youtube.com/subscription_manager.
 
